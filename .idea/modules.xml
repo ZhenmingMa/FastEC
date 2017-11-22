@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FastEC.iml" filepath="$PROJECT_DIR$/FastEC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/orange-annotations/orange-annotations.iml" filepath="$PROJECT_DIR$/orange-annotations/orange-annotations.iml" />
+      <module fileurl="file://$PROJECT_DIR$/orange-compiler/orange-compiler.iml" filepath="$PROJECT_DIR$/orange-compiler/orange-compiler.iml" />
+      <module fileurl="file://$PROJECT_DIR$/orange-core/orange-core.iml" filepath="$PROJECT_DIR$/orange-core/orange-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/orange-ec/orange-ec.iml" filepath="$PROJECT_DIR$/orange-ec/orange-ec.iml" />
+    </modules>
+  </component>
+</project>
