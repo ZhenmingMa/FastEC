@@ -55,5 +55,6 @@ public class MainDelegate extends OrangeDelegate{
                 })
                 .build()
                 .get();
+        ;
     }
 }
