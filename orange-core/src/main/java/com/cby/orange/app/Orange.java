@@ -17,7 +17,12 @@ public final class Orange {
         return Configurator.getInstance();
     }
 
-    private static HashMap<String,Object> getConfigurators(){
+    public static HashMap<String,Object> getConfigurators(){
         return Configurator.getInstance().getOrangeConfigs();
     }
+
+    public static Context getApplicationContext() {
+        return (Context) getConfigurators().get(ConfigType.APPLICATION_CONTEXT.name());
+    }
+
 }
