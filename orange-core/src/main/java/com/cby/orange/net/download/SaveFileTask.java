@@ -59,6 +59,7 @@ public class SaveFileTask extends AsyncTask<Object,Void,File> {
         if (IREQUEST !=null){
             IREQUEST.onRequestEnd();
         }
+        autoInstallAPK(file);
     }
 
     private void autoInstallAPK(File file){

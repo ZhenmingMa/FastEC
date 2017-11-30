@@ -3,7 +3,6 @@ package com.cby.orange.utils;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 
-import com.cby.orange.app.ConfigType;
 import com.cby.orange.app.Orange;
 
 /**

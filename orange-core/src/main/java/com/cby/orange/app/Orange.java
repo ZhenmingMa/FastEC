@@ -3,7 +3,6 @@ package com.cby.orange.app;
 import android.content.Context;
 
 import java.util.HashMap;
-import java.util.WeakHashMap;
 
 /**
  *
@@ -12,17 +11,36 @@ import java.util.WeakHashMap;
 
 public final class Orange {
 
+//    public static Configurator init(Context context){
+//        getConfigurators().put(ConfigKeys.APPLICATION_CONTEXT.name(),context.getApplicationContext());
+//        return Configurator.getInstance();
+//    }
+//
+    public static HashMap<Object,Object> getConfigurators(){
+        return Configurator.getInstance().getOrangeConfigs();
+    }
+//
+//    public static Object getConfigurator(){
+//        return Configurator.getInstance().getOrangeConfigs().get();
+//    }
+
+
     public static Configurator init(Context context){
-        getConfigurators().put(ConfigType.APPLICATION_CONTEXT.name(),context.getApplicationContext());
+        Configurator.getInstance().getOrangeConfigs().put(ConfigKeys.APPLICATION_CONTEXT,context.getApplicationContext());
         return Configurator.getInstance();
     }
 
-    public static HashMap<String,Object> getConfigurators(){
-        return Configurator.getInstance().getOrangeConfigs();
+    public static Configurator getConfigurator() {
+        return Configurator.getInstance();
+    }
+
+    public static <T> T getConfiguration(Object key) {
+        return getConfigurator().getConfiguration(key);
     }
 
     public static Context getApplicationContext() {
-        return (Context) getConfigurators().get(ConfigType.APPLICATION_CONTEXT.name());
+        return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
     }
+
 
 }
