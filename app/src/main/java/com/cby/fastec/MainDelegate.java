@@ -7,12 +7,24 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.cby.orange.delegate.OrangeDelegate;
+import com.cby.orange.net.RestCreator;
 import com.cby.orange.net.callback.IError;
 import com.cby.orange.net.callback.IFailure;
 import com.cby.orange.net.callback.ISuccess;
 import com.cby.orange.net.RestClient;
+import com.cby.orange.net.rx.RxRestClient;
 import com.cby.orange.ui.LoaderStyle;
 import com.cby.orange.ui.OrangeLoader;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Observable;
+
+import io.reactivex.Observer;
+import io.reactivex.Scheduler;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Ma on 2017/11/28.
@@ -26,13 +38,15 @@ public class MainDelegate extends OrangeDelegate{
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
-        OrangeLoader.showLoading(getContext(), LoaderStyle.BallPulseIndicator);
+//        OrangeLoader.showLoading(getContext(), LoaderStyle.BallPulseIndicator);
 //        testRestClient();
+//        testRxRestClient();
+        onCallRxRestclient();
     }
 
     private void testRestClient(){
         RestClient.builder()
-                .url("http://news.baidu.com")
+                .url("http://127.0.0.1/index")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
@@ -56,5 +70,63 @@ public class MainDelegate extends OrangeDelegate{
                 .build()
                 .get();
         ;
+    }
+
+    private void testRxRestClient(){
+        Map<String,Object> params = new HashMap<>();
+        io.reactivex.Observable<String> observable = RestCreator.getRxRestService()
+                .get("http://127.0.0.1/index",params);
+        observable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void onCallRxRestclient(){
+        RxRestClient.builder().url("127.0.0.1/index")
+                .build()
+                .get()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable disposable) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Toast.makeText(getContext(), s, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onError(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

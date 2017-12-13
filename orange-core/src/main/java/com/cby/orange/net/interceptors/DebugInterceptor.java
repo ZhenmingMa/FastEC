@@ -45,6 +45,10 @@ public class DebugInterceptor extends BaseInterceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        return null;
+        final String url = chain.request().url().toString();
+        if (url.contains(DEBUG_URL)){
+            return debugResponse(chain,DEBUG_ROW_ID);
+        }
+        return chain.proceed(chain.request());
     }
 }
