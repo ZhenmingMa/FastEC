@@ -41,7 +41,7 @@ public class MainDelegate extends OrangeDelegate{
 //        OrangeLoader.showLoading(getContext(), LoaderStyle.BallPulseIndicator);
 //        testRestClient();
 //        testRxRestClient();
-        onCallRxRestclient();
+//        onCallRxRestclient();
     }
 
     private void testRestClient(){

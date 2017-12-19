@@ -2,9 +2,11 @@ package com.cby.orange.net.callback;
 
 
 import android.os.Handler;
+import android.widget.Toast;
 
 import com.cby.orange.ui.LoaderStyle;
 import com.cby.orange.ui.OrangeLoader;
+import com.cby.orange.utils.log.OrangeLogger;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -56,6 +58,7 @@ public class RequestCallbacks implements Callback<String> {
         if (REQUEST!=null){
             REQUEST.onRequestEnd();
         }
+        OrangeLogger.e("error","error");
         stopLoading();
     }
 
@@ -66,7 +69,7 @@ public class RequestCallbacks implements Callback<String> {
                 public void run() {
                     OrangeLoader.stopLoading();
                 }
-            },1000);
+            },500);
         }
     }
 }

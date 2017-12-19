@@ -1,7 +1,11 @@
 package com.cby.orange.app;
 
+import android.app.Activity;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
+import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +42,7 @@ public class Configurator {
 
     public final void configure(){
         initIcons();
+        initLogger();
         ORANGE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(),true);
     }
 
@@ -53,12 +58,8 @@ public class Configurator {
         }
     }
 
-//    @SuppressWarnings("unchecked")
-//    final <T> T getConfiguration(Enum<ConfigKeys> key){
-//        checkConfiguration();
-//        return (T) ORANGE_CONFIGS.get(key.name());
-//    }
 
+    @SuppressWarnings("unchecked")
     final <T> T getConfiguration(Object key){
         checkConfiguration();
         final Object value=ORANGE_CONFIGS.get(key);
@@ -78,6 +79,10 @@ public class Configurator {
         }
     }
 
+    private void initLogger(){
+        Logger.addLogAdapter(new AndroidLogAdapter());
+    }
+
     public Configurator withIcon(IconFontDescriptor descriptor){
         ICONS.add(descriptor);
         return this;
@@ -95,4 +100,18 @@ public class Configurator {
         return this;
     }
 
+    public Configurator withWeChatAppId(String weChatAppId){
+        ORANGE_CONFIGS.put(ConfigKeys.WECHAT_APP_ID.name(),weChatAppId);
+        return this;
+    }
+
+    public Configurator withWeChatAppSecret(String weChatAppSecret){
+        ORANGE_CONFIGS.put(ConfigKeys.WECHAT_APP_SECRET.name(),weChatAppSecret);
+        return this;
+    }
+
+    public Configurator withActivity(Activity activity){
+        ORANGE_CONFIGS.put(ConfigKeys.ACTIVITY.name(),activity);
+        return this;
+    }
 }

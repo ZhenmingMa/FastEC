@@ -9,6 +9,10 @@ public enum ConfigKeys {
     API_HOST,
     APPLICATION_CONTEXT,
     CONFIG_READY,
+    ICON,
+    LOADER_DELAYED,
     INTERCEPTOR,
-    ICON
+    WECHAT_APP_ID,
+    WECHAT_APP_SECRET,
+    ACTIVITY
 }

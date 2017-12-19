@@ -1,12 +1,12 @@
 package com.cby.fastec;
 
 import android.app.Application;
-import android.widget.Toast;
 
 import com.cby.orange.app.Orange;
+import com.cby.orange.ec.datebase.DataBaseManager;
 import com.cby.orange.ec.icon.FontEcModule;
 import com.cby.orange.net.interceptors.DebugInterceptor;
-import com.joanzapata.iconify.Iconify;
+import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
 /**
@@ -24,5 +24,14 @@ public class FastECApp extends Application {
                 .withApiHost("http://127.0.0.1/")
                 .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
+        DataBaseManager.getInstance().init(this);
+        initStetho();
+    }
+
+    private void initStetho(){
+        Stetho.initialize(Stetho.newInitializerBuilder(this)
+                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+        .build());
     }
 }
