@@ -10,7 +10,7 @@ import com.cby.orange.wechat.templates.WXEntryTemplate;
 
 @SuppressWarnings("unused")
 @EntryGenerator(
-        packageName = "com.diabin.fastec.example",
+        packageName = "com.cby.fastec",
         entryTemplate = WXEntryTemplate.class
 )
 public interface WeChatEntry {

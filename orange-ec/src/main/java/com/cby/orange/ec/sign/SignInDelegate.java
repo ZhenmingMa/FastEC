@@ -16,6 +16,8 @@ import com.cby.orange.net.callback.IError;
 import com.cby.orange.net.callback.IFailure;
 import com.cby.orange.net.callback.ISuccess;
 import com.cby.orange.utils.log.OrangeLogger;
+import com.cby.orange.wechat.OrangeWeChat;
+import com.cby.orange.wechat.callbacks.IWeChatSignInCallcback;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -75,6 +77,16 @@ public class SignInDelegate extends OrangeDelegate {
         start(new SignUpDelegate(),SINGLETASK);
     }
 
+    @OnClick(R2.id.icon_sign_in_wechat)
+    void onClickWeChat(){
+        OrangeWeChat.getInstance().onSignInSuccess(new IWeChatSignInCallcback() {
+            @Override
+            public void onSignInSuccess(String userInfo) {
+
+            }
+        }).signIn();
+    }
+
     private boolean checkForm(){
         String phone = mPhone.getText().toString();
         String password = mPassword.getText().toString();
@@ -97,6 +109,8 @@ public class SignInDelegate extends OrangeDelegate {
         return isPass;
 
     }
+
+
 
     @Override
     public Object setLayout() {

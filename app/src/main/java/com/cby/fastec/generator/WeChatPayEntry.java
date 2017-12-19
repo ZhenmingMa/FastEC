@@ -9,7 +9,7 @@ import com.cby.orange.wechat.templates.WXPayEntryTemplate;
  */
 @SuppressWarnings("unused")
 @PayEntryGenerator(
-        packageName = "com.diabin.fastec.example",
+        packageName = "com.cby.fastec",
         payEntryTemplate = WXPayEntryTemplate.class
 )
 public interface WeChatPayEntry {

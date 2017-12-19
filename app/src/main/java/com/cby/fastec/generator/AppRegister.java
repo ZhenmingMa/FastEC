@@ -8,7 +8,7 @@ import com.cby.orange.wechat.templates.AppRegisterTemplate;
  */
 @SuppressWarnings("unused")
 @AppRegisterGenerator(
-        packageName = "com.diabin.fastec.example",
+        packageName = "com.cby.fastec",
         registerTemplate = AppRegisterTemplate.class
 )
 public interface AppRegister {
