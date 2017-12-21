@@ -20,21 +20,21 @@ public class OrangeWeChat {
     private final IWXAPI WXAPI;
     private IWeChatSignInCallcback mSignInCallback = null;
 
-    private final static class Holder {
-        private final static OrangeWeChat INSTANCE = new OrangeWeChat();
-    }
-
-    public static OrangeWeChat getInstance() {
-        return Holder.INSTANCE;
-    }
-
     private OrangeWeChat() {
         final Activity activity = Orange.getConfiguration(ConfigKeys.ACTIVITY);
         /**
          * 是否验证
          */
-        WXAPI = WXAPIFactory.createWXAPI(activity, APPID, true);
+        WXAPI = WXAPIFactory.createWXAPI(activity, APPID, false);
         WXAPI.registerApp(APPID);
+    }
+
+    private static final class Holder {
+        private static final OrangeWeChat INSTANCE = new OrangeWeChat();
+    }
+
+    public static OrangeWeChat getInstance() {
+        return Holder.INSTANCE;
     }
 
     public final IWXAPI getWXAPI() {

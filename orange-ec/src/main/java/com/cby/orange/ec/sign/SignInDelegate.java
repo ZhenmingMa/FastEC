@@ -82,7 +82,7 @@ public class SignInDelegate extends OrangeDelegate {
         OrangeWeChat.getInstance().onSignInSuccess(new IWeChatSignInCallcback() {
             @Override
             public void onSignInSuccess(String userInfo) {
-
+                OrangeLogger.e("userInfo",userInfo);
             }
         }).signIn();
     }

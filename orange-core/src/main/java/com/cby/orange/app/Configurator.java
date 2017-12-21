@@ -101,17 +101,17 @@ public class Configurator {
     }
 
     public Configurator withWeChatAppId(String weChatAppId){
-        ORANGE_CONFIGS.put(ConfigKeys.WECHAT_APP_ID.name(),weChatAppId);
+        ORANGE_CONFIGS.put(ConfigKeys.WECHAT_APP_ID,weChatAppId);
         return this;
     }
 
     public Configurator withWeChatAppSecret(String weChatAppSecret){
-        ORANGE_CONFIGS.put(ConfigKeys.WECHAT_APP_SECRET.name(),weChatAppSecret);
+        ORANGE_CONFIGS.put(ConfigKeys.WECHAT_APP_SECRET,weChatAppSecret);
         return this;
     }
 
     public Configurator withActivity(Activity activity){
-        ORANGE_CONFIGS.put(ConfigKeys.ACTIVITY.name(),activity);
+        ORANGE_CONFIGS.put(ConfigKeys.ACTIVITY,activity);
         return this;
     }
 }

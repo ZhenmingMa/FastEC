@@ -33,7 +33,7 @@ import butterknife.OnClick;
 public class LauncherDelegate extends OrangeDelegate implements ITimerListener{
 
     private Timer mTimer = null;
-    private int mCount = 5;
+    private int mCount = 3;
     private ILauncherListener mILauncherListener;
 
     @BindView(R2.id.tv_launcher_timer)
@@ -104,7 +104,6 @@ public class LauncherDelegate extends OrangeDelegate implements ITimerListener{
             @Override
             public void run() {
                 if (mTvTimer != null){
-                    Log.e("timer",""+mCount);
                     mTvTimer.setText(MessageFormat.format("跳过\n{0}s",mCount));
                     mCount--;
                     if (mCount < 0){

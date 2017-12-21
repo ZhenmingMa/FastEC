@@ -23,8 +23,8 @@ public class FastECApp extends Application {
                 .withIcon(new FontEcModule())
                 .withApiHost("http://127.0.0.1/")
                 .withInterceptor(new DebugInterceptor("index",R.raw.test))
-                .withWeChatAppId("")
-                .withWeChatAppSecret("")
+                .withWeChatAppId("123121131213")
+                .withWeChatAppSecret("12312213123")
                 .configure();
         DataBaseManager.getInstance().init(this);
         initStetho();
