@@ -3,17 +3,9 @@ package com.cby.orange.net.rx;
 import android.content.Context;
 
 import com.cby.orange.net.HttpMethod;
-import com.cby.orange.net.RestClientBuilder;
 import com.cby.orange.net.RestCreator;
-import com.cby.orange.net.RestService;
-import com.cby.orange.net.callback.IError;
-import com.cby.orange.net.callback.IFailure;
-import com.cby.orange.net.callback.IRequest;
-import com.cby.orange.net.callback.ISuccess;
-import com.cby.orange.net.callback.RequestCallbacks;
-import com.cby.orange.net.download.DownloadHandler;
-import com.cby.orange.ui.LoaderStyle;
-import com.cby.orange.ui.OrangeLoader;
+import com.cby.orange.ui.loader.LoaderStyle;
+import com.cby.orange.ui.loader.OrangeLoader;
 
 import java.io.File;
 import java.util.WeakHashMap;
@@ -23,8 +15,6 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
-import retrofit2.Call;
-import retrofit2.Callback;
 
 /**
  * Created by Ma on 2017/11/28.
@@ -33,7 +23,7 @@ import retrofit2.Callback;
 public class RxRestClient {
 
     private final String URL;
-    private static final WeakHashMap<String,Object> PARAMS = RestCreator.getParams();
+    private final WeakHashMap<String,Object> PARAMS;
     private final RequestBody BODY;
     private final File FILE;
     private final LoaderStyle LOADER_STYLE;
@@ -47,7 +37,7 @@ public class RxRestClient {
                         LoaderStyle loader_style,
                         Context context) {
         this.URL = url;
-        PARAMS.putAll(params);
+        this.PARAMS = params;
         this.BODY = body;
         this.FILE = file;
         this.LOADER_STYLE = loader_style;

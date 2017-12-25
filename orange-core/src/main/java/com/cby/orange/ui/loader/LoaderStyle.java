@@ -1,4 +1,4 @@
-package com.cby.orange.ui;
+package com.cby.orange.ui.loader;
 
 /**
  * Created by Ma on 2017/11/28.

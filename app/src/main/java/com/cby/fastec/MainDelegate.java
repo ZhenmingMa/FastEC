@@ -13,15 +13,11 @@ import com.cby.orange.net.callback.IFailure;
 import com.cby.orange.net.callback.ISuccess;
 import com.cby.orange.net.RestClient;
 import com.cby.orange.net.rx.RxRestClient;
-import com.cby.orange.ui.LoaderStyle;
-import com.cby.orange.ui.OrangeLoader;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Observable;
 
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -39,14 +35,14 @@ public class MainDelegate extends OrangeDelegate{
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 //        OrangeLoader.showLoading(getContext(), LoaderStyle.BallPulseIndicator);
-//        testRestClient();
+        testRestClient();
 //        testRxRestClient();
 //        onCallRxRestclient();
     }
 
     private void testRestClient(){
         RestClient.builder()
-                .url("http://127.0.0.1/index")
+                .url("http://www.xiufm.com/RestServer/api/index.php")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override

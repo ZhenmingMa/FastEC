@@ -6,7 +6,7 @@ import com.cby.orange.net.callback.IError;
 import com.cby.orange.net.callback.IFailure;
 import com.cby.orange.net.callback.IRequest;
 import com.cby.orange.net.callback.ISuccess;
-import com.cby.orange.ui.LoaderStyle;
+import com.cby.orange.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.WeakHashMap;
@@ -20,7 +20,7 @@ import okhttp3.RequestBody;
 
 public class RestClientBuilder {
     private String mUrl = null;
-    private static final WeakHashMap<String,Object> PARAMS = RestCreator.getParams();
+    private static final WeakHashMap<String,Object> PARAMS = new WeakHashMap<>();
     private IRequest mIRequest = null;
     private String mDownloadDir = null;
     private String mExtension = null;

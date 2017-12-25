@@ -4,36 +4,20 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
-import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Toast;
 
-import com.cby.orange.app.Orange;
 import com.cby.orange.delegate.OrangeDelegate;
 import com.cby.orange.ec.R;
 import com.cby.orange.ec.R2;
 import com.cby.orange.net.RestClient;
 import com.cby.orange.net.callback.IError;
 import com.cby.orange.net.callback.IFailure;
-import com.cby.orange.net.callback.IRequest;
 import com.cby.orange.net.callback.ISuccess;
-import com.cby.orange.net.rx.RxObserver;
-import com.cby.orange.net.rx.RxRestClient;
-import com.cby.orange.ui.LoaderStyle;
 import com.cby.orange.utils.log.OrangeLogger;
-import com.orhanobut.logger.AndroidLogAdapter;
-import com.orhanobut.logger.Logger;
-
-import java.util.Observable;
-import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
 
 
 /**

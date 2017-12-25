@@ -2,8 +2,8 @@ package com.cby.orange.net.rx;
 
 import android.os.Handler;
 
-import com.cby.orange.ui.LoaderStyle;
-import com.cby.orange.ui.OrangeLoader;
+import com.cby.orange.ui.loader.LoaderStyle;
+import com.cby.orange.ui.loader.OrangeLoader;
 import com.cby.orange.utils.log.OrangeLogger;
 
 import io.reactivex.Observer;

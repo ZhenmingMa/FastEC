@@ -1,7 +1,6 @@
 package com.cby.orange.net;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.cby.orange.net.callback.IError;
 import com.cby.orange.net.callback.IFailure;
@@ -9,8 +8,8 @@ import com.cby.orange.net.callback.IRequest;
 import com.cby.orange.net.callback.ISuccess;
 import com.cby.orange.net.callback.RequestCallbacks;
 import com.cby.orange.net.download.DownloadHandler;
-import com.cby.orange.ui.LoaderStyle;
-import com.cby.orange.ui.OrangeLoader;
+import com.cby.orange.ui.loader.LoaderStyle;
+import com.cby.orange.ui.loader.OrangeLoader;
 
 import java.io.File;
 import java.util.WeakHashMap;
@@ -20,7 +19,6 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.http.Multipart;
 
 /**
  * Created by Ma on 2017/11/28.
@@ -29,7 +27,7 @@ import retrofit2.http.Multipart;
 public class RestClient {
 
     private final String URL;
-    private static final WeakHashMap<String,Object> PARAMS = RestCreator.getParams();
+    private final WeakHashMap<String,Object> PARAMS;
     private final IRequest REQUEST;
     private String DOWNLOAD_DIR;
     private String EXTENSION;
@@ -57,7 +55,7 @@ public class RestClient {
                       LoaderStyle loader_style,
                       Context context) {
         this.URL = url;
-        PARAMS.putAll(params);
+        this.PARAMS = params;
         this.REQUEST = request;
         this.DOWNLOAD_DIR = downloadDir;
         this.EXTENSION = extension;
@@ -163,7 +161,7 @@ public class RestClient {
     }
 
     public final void downLoad(){
-        new DownloadHandler(URL,REQUEST,DOWNLOAD_DIR,EXTENSION,NAME,SUCCESS,FAILURE,ERROR).handleDownload();
+        new DownloadHandler(URL,PARAMS,REQUEST,DOWNLOAD_DIR,EXTENSION,NAME,SUCCESS,FAILURE,ERROR).handleDownload();
     }
 
 }

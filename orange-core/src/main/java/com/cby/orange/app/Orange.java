@@ -1,6 +1,7 @@
 package com.cby.orange.app;
 
 import android.content.Context;
+import android.os.Handler;
 
 import java.util.HashMap;
 
@@ -42,5 +43,8 @@ public final class Orange {
         return getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
     }
 
+    public static Handler getHandler() {
+        return getConfiguration(ConfigKeys.HANDLER);
+    }
 
 }

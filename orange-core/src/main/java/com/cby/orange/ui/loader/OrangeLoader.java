@@ -1,4 +1,4 @@
-package com.cby.orange.ui;
+package com.cby.orange.ui.loader;
 
 import android.content.Context;
 import android.support.v7.app.AppCompatDialog;

@@ -46,7 +46,7 @@ public class SignInDelegate extends OrangeDelegate {
     void onClickSignIn(){
         if (checkForm()) {
             RestClient.builder()
-                    .url("http://www.xiufm.com/RestServer/api/user_profile.php")
+                    .url("user_profile.php")
                     .loader(getContext())
                     .success(new ISuccess() {
                         @Override

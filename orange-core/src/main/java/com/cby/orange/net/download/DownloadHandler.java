@@ -23,7 +23,7 @@ import retrofit2.http.Url;
 public class DownloadHandler {
 
     private final String URL;
-    private static final WeakHashMap<String,Object> PARAMS = RestCreator.getParams();
+    private final WeakHashMap<String,Object> PARAMS;
     private final IRequest REQUEST;
     private String DOWNLOAD_DIR;
     private String EXTENSION;
@@ -32,11 +32,14 @@ public class DownloadHandler {
     private final IFailure FAILURE;
     private final IError ERROR;
 
-    public DownloadHandler(String url, IRequest request,
+    public DownloadHandler(String url,
+                           WeakHashMap<String, Object> params,
+                           IRequest request,
                            String download_dir, String extension,
                            String name, ISuccess success,
                            IFailure failure, IError error) {
         this.URL = url;
+        this.PARAMS = params;
         this.REQUEST = request;
         this.DOWNLOAD_DIR = download_dir;
         this.EXTENSION = extension;
@@ -58,7 +61,7 @@ public class DownloadHandler {
                         if (response.isSuccessful()){
                             final ResponseBody responseBody = response.body();
                             final SaveFileTask task = new SaveFileTask(REQUEST,SUCCESS);
-                            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,DOWNLOAD_DIR,EXTENSION,response,NAME);
+                            task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,DOWNLOAD_DIR,EXTENSION,responseBody,NAME);
 
                             //注意判断，否则文件下载不全
                             if (task.isCancelled()){

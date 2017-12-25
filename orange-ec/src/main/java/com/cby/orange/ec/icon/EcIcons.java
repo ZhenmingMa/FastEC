@@ -4,7 +4,7 @@ import com.joanzapata.iconify.Icon;
 
 
 public enum  EcIcons implements Icon {
-    icon_scan('\ue606'),
+    icon_scan('\ue602'),
     icon_ali_pay('\ue606');
 
     private char character;
@@ -20,6 +20,6 @@ public enum  EcIcons implements Icon {
 
     @Override
     public char character() {
-        return 0;
+        return character;
     }
 }

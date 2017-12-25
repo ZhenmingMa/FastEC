@@ -1,4 +1,4 @@
-package com.cby.orange.ui;
+package com.cby.orange.ui.loader;
 
 import android.content.Context;
 

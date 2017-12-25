@@ -1,6 +1,7 @@
 package com.cby.orange.app;
 
 import android.app.Activity;
+import android.os.Handler;
 
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
@@ -23,9 +24,12 @@ public class Configurator {
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
+    private static final Handler HANDLER = new Handler();
+
     public Configurator() {
 
-        ORANGE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(),false);
+        ORANGE_CONFIGS.put(ConfigKeys.CONFIG_READY,false);
+        ORANGE_CONFIGS.put(ConfigKeys.HANDLER, HANDLER);
     }
 
     public static Configurator getInstance(){
@@ -43,16 +47,16 @@ public class Configurator {
     public final void configure(){
         initIcons();
         initLogger();
-        ORANGE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(),true);
+        ORANGE_CONFIGS.put(ConfigKeys.CONFIG_READY,true);
     }
 
     public final Configurator withApiHost(String host){
-        ORANGE_CONFIGS.put(ConfigKeys.API_HOST.name(),host);
+        ORANGE_CONFIGS.put(ConfigKeys.API_HOST,host);
         return this;
     }
 
     private void checkConfiguration(){
-        final boolean isReady = (boolean) ORANGE_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
+        final boolean isReady = (boolean) ORANGE_CONFIGS.get(ConfigKeys.CONFIG_READY);
         if (!isReady){
             throw new RuntimeException("Configuration is not ready,call configure");
         }
