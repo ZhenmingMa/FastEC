@@ -75,7 +75,6 @@ public class RefreshHandler implements
                         mAdapter.setOnLoadMoreListener(RefreshHandler.this,RECYCLERVIEW);
                         RECYCLERVIEW.setAdapter(mAdapter);
                         BEAN.addIndex();
-
                     }
                 })
                 .failure(new IFailure() {

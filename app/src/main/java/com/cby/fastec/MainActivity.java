@@ -22,6 +22,7 @@ import com.orhanobut.logger.Logger;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import qiu.niorgai.StatusBarCompat;
 
 public class MainActivity extends ProxyActivity implements ISignListener,ILauncherListener {
 
@@ -33,6 +34,7 @@ public class MainActivity extends ProxyActivity implements ISignListener,ILaunch
             actionBar.hide();
         }
         Orange.getConfigurator().withActivity(this);
+        StatusBarCompat.translucentStatusBar(this,true);
     }
 
     @Override
