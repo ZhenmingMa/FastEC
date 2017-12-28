@@ -20,6 +20,11 @@ public class MultipleItemEntity implements MultiItemEntity {
     MultipleItemEntity(LinkedHashMap<Object, Object> fields) {
         FIELDS_REFERENCE.get().putAll(fields);
     }
+    public static MultipleItemEntityBuilder builder(){
+        return  new MultipleItemEntityBuilder();
+    }
+
+
 
     @Override
     public int getItemType() {

@@ -16,10 +16,6 @@ public class MultipleItemEntityBuilder {
         FIELDS.clear();
     }
 
-    public static MultipleItemEntityBuilder builder(){
-        return  new MultipleItemEntityBuilder();
-    }
-
     public MultipleItemEntityBuilder setItemType(int itemType){
         FIELDS.put(MultipleteFields.ITEM_TYPE,itemType);
         return this;

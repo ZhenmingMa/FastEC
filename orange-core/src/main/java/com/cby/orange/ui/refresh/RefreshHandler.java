@@ -66,7 +66,6 @@ public class RefreshHandler implements
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-                        OrangeLogger.e("index", response);
                         final JSONObject jsonObject = JSON.parseObject(response);
                         BEAN.setTotal(jsonObject.getInteger("total"))
                         .setPageSize(jsonObject.getInteger("page_size"));

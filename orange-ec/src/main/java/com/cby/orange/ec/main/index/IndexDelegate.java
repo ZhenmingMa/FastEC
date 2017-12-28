@@ -14,6 +14,7 @@ import android.view.View;
 import com.cby.orange.delegate.bottom.BottomItemDelegate;
 import com.cby.orange.ec.R;
 import com.cby.orange.ec.R2;
+import com.cby.orange.ec.main.EcBottomDelegate;
 import com.cby.orange.net.RestClient;
 import com.cby.orange.net.callback.ISuccess;
 import com.cby.orange.ui.recycler.BaseDecoration;
@@ -69,6 +70,9 @@ public class IndexDelegate extends BottomItemDelegate {
         mRecyclerView.setLayoutManager(manager);
         //分割线
         mRecyclerView.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(getContext(),R.color.app_background),5));
+
+        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
+        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }
 
     @Override

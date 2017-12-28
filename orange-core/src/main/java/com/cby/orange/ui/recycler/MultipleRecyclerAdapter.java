@@ -34,7 +34,7 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .dontAnimate();
 
-    private MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
+    protected MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
         super(data);
         init();
     }
@@ -68,37 +68,37 @@ public class MultipleRecyclerAdapter extends BaseMultiItemQuickAdapter<MultipleI
     }
 
     @Override
-    protected void convert(MultipleViewHolder multipleViewHolder, MultipleItemEntity multipleItemEntity) {
+    protected void convert(MultipleViewHolder holder, MultipleItemEntity entity) {
 
         final String text;
         final String imageUrl;
         final ArrayList<String> bannerImages;
-        switch (multipleViewHolder.getItemViewType()) {
+        switch (holder.getItemViewType()) {
             case ItemType.TEXT:
-                text = multipleItemEntity.getField(MultipleteFields.TEXT);
-                multipleViewHolder.setText(R.id.text_single, text);
+                text = entity.getField(MultipleteFields.TEXT);
+                holder.setText(R.id.text_single, text);
                 break;
             case ItemType.IMAGE:
-                imageUrl = multipleItemEntity.getField(MultipleteFields.IMAGE_URL);
+                imageUrl = entity.getField(MultipleteFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imageUrl)
                         .apply(REQUEST_OPTIONS)
-                        .into((ImageView) multipleViewHolder.getView(R.id.image_single));
+                        .into((ImageView) holder.getView(R.id.image_single));
 
                 break;
             case ItemType.TEXT_IMAGE:
-                text = multipleItemEntity.getField(MultipleteFields.TEXT);
-                imageUrl = multipleItemEntity.getField(MultipleteFields.IMAGE_URL);
-                multipleViewHolder.setText(R.id.text_multiple, text);
+                text = entity.getField(MultipleteFields.TEXT);
+                imageUrl = entity.getField(MultipleteFields.IMAGE_URL);
+                holder.setText(R.id.text_multiple, text);
                 Glide.with(mContext)
                         .load(imageUrl)
                         .apply(REQUEST_OPTIONS)
-                        .into((ImageView) multipleViewHolder.getView(R.id.image_multiple));
+                        .into((ImageView) holder.getView(R.id.image_multiple));
                 break;
             case ItemType.BANNER:
                 if (!mIsInitBanner) {
-                    bannerImages = multipleItemEntity.getField(MultipleteFields.BANNERS);
-                    final ConvenientBanner<String> convenientBanner = multipleViewHolder.getView(R.id.bannar_recycler_item);
+                    bannerImages = entity.getField(MultipleteFields.BANNERS);
+                    final ConvenientBanner<String> convenientBanner = holder.getView(R.id.bannar_recycler_item);
                     BannerCreator.setDefault(convenientBanner, bannerImages, this);
                     mIsInitBanner = true;
                 }

@@ -40,7 +40,9 @@ public class MainActivity extends ProxyActivity implements ISignListener,ILaunch
     @Override
     public OrangeDelegate setRootDelegate() {
         return new LauncherDelegate();
+//        return new MainDelegate();
 //        return new SignInDelegate();
+
     }
 
     @Override

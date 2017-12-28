@@ -29,13 +29,13 @@ import io.reactivex.schedulers.Schedulers;
 public class MainDelegate extends OrangeDelegate{
     @Override
     public Object setLayout() {
-        return R.layout.delegate_main;
+        return R.layout.item_vertical_menu_list;
     }
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
 //        OrangeLoader.showLoading(getContext(), LoaderStyle.BallPulseIndicator);
-        testRestClient();
+//        testRestClient();
 //        testRxRestClient();
 //        onCallRxRestclient();
     }
