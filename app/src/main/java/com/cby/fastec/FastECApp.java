@@ -2,6 +2,7 @@ package com.cby.fastec;
 
 import android.app.Application;
 
+import com.cby.fastec.event.TestEvent;
 import com.cby.orange.app.Orange;
 import com.cby.orange.ec.datebase.DataBaseManager;
 import com.cby.orange.ec.icon.FontEcModule;
@@ -25,6 +26,8 @@ public class FastECApp extends Application {
                 .withInterceptor(new DebugInterceptor("test",R.raw.test))
                 .withWeChatAppId("123121131213")
                 .withWeChatAppSecret("12312213123")
+                .withJavascriptInterface("orange")
+                .withWebEvent("test", new TestEvent())
                 .configure();
         DataBaseManager.getInstance().init(this);
         initStetho();

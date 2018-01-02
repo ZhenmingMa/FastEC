@@ -2,7 +2,10 @@ package com.cby.orange.app;
 
 import android.app.Activity;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 
+import com.cby.orange.delegate.web.event.Event;
+import com.cby.orange.delegate.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -116,6 +119,16 @@ public class Configurator {
 
     public Configurator withActivity(Activity activity){
         ORANGE_CONFIGS.put(ConfigKeys.ACTIVITY,activity);
+        return this;
+    }
+    public Configurator withJavascriptInterface(@NonNull String name){
+        ORANGE_CONFIGS.put(ConfigKeys.JAVASCRIPT_INTERFACE,name);
+        return this;
+    }
+
+    public Configurator withWebEvent(@NonNull String name, @NonNull Event event){
+        final EventManager manager = EventManager.getInstance();
+        manager.addEvent(name,event);
         return this;
     }
 }
