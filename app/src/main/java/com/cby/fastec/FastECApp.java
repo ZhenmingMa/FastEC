@@ -7,6 +7,7 @@ import com.cby.orange.app.Orange;
 import com.cby.orange.ec.datebase.DataBaseManager;
 import com.cby.orange.ec.icon.FontEcModule;
 import com.cby.orange.net.interceptors.DebugInterceptor;
+import com.cby.orange.net.rx.AddCookieInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
@@ -28,6 +29,9 @@ public class FastECApp extends Application {
                 .withWeChatAppSecret("12312213123")
                 .withJavascriptInterface("orange")
                 .withWebEvent("test", new TestEvent())
+                //添加cookie同步拦截器
+                .withInterceptor(new AddCookieInterceptor())
+                .withWebHost("https://www.baidu.com/")
                 .configure();
         DataBaseManager.getInstance().init(this);
         initStetho();

@@ -16,5 +16,6 @@ public enum ConfigKeys {
     WECHAT_APP_SECRET,
     ACTIVITY,
     HANDLER,
-    JAVASCRIPT_INTERFACE
+    JAVASCRIPT_INTERFACE,
+    WEB_HOST
 }
