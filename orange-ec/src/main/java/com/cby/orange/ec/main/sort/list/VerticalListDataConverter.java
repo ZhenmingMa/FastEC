@@ -40,7 +40,6 @@ public final class VerticalListDataConverter extends DataConverter {
                     .setField(MultipleteFields.TEXT, name)
                     .setField(MultipleteFields.TAG, false)
                     .build();
-
             dataList.add(entity);
             //设置第一个被选中
             dataList.get(0).setField(MultipleteFields.TAG, true);

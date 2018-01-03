@@ -41,10 +41,7 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
         switch (holder.getItemViewType()) {
             case ItemType.VERTICAL_MENU_LIST:
                 final String text = entity.getField(MultipleteFields.TEXT);
-
                 final boolean isClicked = entity.getField(MultipleteFields.TAG);
-
-
                 final AppCompatTextView name = holder.getView(R.id.tv_vertical_item_name);
                 final View line = holder.getView(R.id.view_line);
                 final View itemView = holder.itemView;

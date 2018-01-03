@@ -9,7 +9,7 @@ import com.cby.orange.delegate.bottom.ItemBuilder;
 import com.cby.orange.ec.main.discover.DiscoverDelegate;
 import com.cby.orange.ec.main.index.IndexDelegate;
 import com.cby.orange.ec.main.my.MyDelegate;
-import com.cby.orange.ec.main.shoppingcar.ShoppingCarDelegate;
+import com.cby.orange.ec.main.cart.ShopCarDelegate;
 import com.cby.orange.ec.main.sort.SortDelegate;
 
 import java.util.LinkedHashMap;
@@ -25,7 +25,7 @@ public class EcBottomDelegate extends BaseBottomDelegate {
         items.put(new BottomTabBean("{fa-home}","主页"),new IndexDelegate());
         items.put(new BottomTabBean("{fa-sort}","分类"),new SortDelegate());
         items.put(new BottomTabBean("{fa-compass}","发现"),new DiscoverDelegate());
-        items.put(new BottomTabBean("{fa-shopping-cart}","购物车"),new ShoppingCarDelegate());
+        items.put(new BottomTabBean("{fa-shopping-cart}","购物车"),new ShopCarDelegate());
         items.put(new BottomTabBean("{fa-user}","我的"),new MyDelegate());
         return builder.addItems(items).build();
     }

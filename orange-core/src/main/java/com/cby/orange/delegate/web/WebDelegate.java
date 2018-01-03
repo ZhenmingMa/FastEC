@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.webkit.WebView;
-import android.webkit.WebViewFragment;
 
 import com.cby.orange.app.ConfigKeys;
 import com.cby.orange.app.Orange;
@@ -67,6 +66,7 @@ public abstract class WebDelegate extends OrangeDelegate implements IWebViewInit
     public void setTopDelegate(OrangeDelegate delegate){
         mTopDelegate = delegate;
     }
+
     public OrangeDelegate getTopDelegate(){
         if (mTopDelegate == null){
             return this;

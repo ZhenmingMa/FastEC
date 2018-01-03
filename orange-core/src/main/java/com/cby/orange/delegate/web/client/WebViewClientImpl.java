@@ -59,7 +59,6 @@ public class WebViewClientImpl extends WebViewClient {
                }
            }
         }
-
     }
 
     @Override
