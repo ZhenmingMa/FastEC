@@ -7,7 +7,6 @@ import com.cby.orange.ui.recycler.DataConverter;
 import com.cby.orange.ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by baiyanfang on 2017/12/27.

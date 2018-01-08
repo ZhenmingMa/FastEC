@@ -5,7 +5,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
-import com.alibaba.fastjson.JSON;
 import com.cby.orange.delegate.OrangeDelegate;
 import com.cby.orange.ec.R;
 import com.cby.orange.ec.main.sort.SortDelegate;
@@ -15,9 +14,10 @@ import com.cby.orange.ui.recycler.MultipleItemEntity;
 import com.cby.orange.ui.recycler.MultipleRecyclerAdapter;
 import com.cby.orange.ui.recycler.MultipleViewHolder;
 import com.cby.orange.ui.recycler.MultipleteFields;
-import com.cby.orange.utils.log.OrangeLogger;
 
 import java.util.List;
+
+import me.yokeyword.fragmentation.SupportHelper;
 
 /**
  * Created by baiyanfang on 2017/12/26.
@@ -92,9 +92,10 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     }
 
     private void switchContent(ContentDelegate delegate){
-        final OrangeDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
+        final OrangeDelegate contentDelegate =
+                SupportHelper.findFragment(DELEGATE.getChildFragmentManager(),ContentDelegate.class);
         if (contentDelegate != null){
-            contentDelegate.replaceFragment(delegate,false);
+            contentDelegate.getSupportDelegate().replaceFragment(delegate,false);
         }
     }
 }

@@ -2,7 +2,6 @@ package com.cby.orange.net.rx;
 
 import android.content.Context;
 
-import com.cby.orange.net.RestCreator;
 import com.cby.orange.ui.loader.LoaderStyle;
 
 import java.io.File;

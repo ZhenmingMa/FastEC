@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Toast;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
@@ -13,8 +11,9 @@ import com.cby.orange.app.AccountManager;
 import com.cby.orange.app.IUserchecker;
 import com.cby.orange.delegate.OrangeDelegate;
 import com.cby.orange.ec.R;
-import com.cby.orange.ec.sign.SignUpDelegate;
+import com.cby.orange.ui.launcher.ILauncherListener;
 import com.cby.orange.ui.launcher.LauncherHolderCreator;
+import com.cby.orange.ui.launcher.OnLauncherFinishTag;
 import com.cby.orange.ui.launcher.ScrollLauncherTag;
 import com.cby.orange.utils.storage.OrangePreference;
 

@@ -9,7 +9,6 @@ import com.bigkoo.convenientbanner.holder.Holder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
-import com.cby.orange.R;
 
 /**
  * Created by baiyanfang on 2017/12/25.

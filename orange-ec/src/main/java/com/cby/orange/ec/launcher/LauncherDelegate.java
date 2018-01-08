@@ -4,16 +4,16 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatTextView;
-import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
 import com.cby.orange.app.AccountManager;
 import com.cby.orange.app.IUserchecker;
 import com.cby.orange.delegate.OrangeDelegate;
 import com.cby.orange.ec.R;
 import com.cby.orange.ec.R2;
-import com.cby.orange.ec.sign.SignUpDelegate;
+
+import com.cby.orange.ui.launcher.ILauncherListener;
+import com.cby.orange.ui.launcher.OnLauncherFinishTag;
 import com.cby.orange.ui.launcher.ScrollLauncherTag;
 import com.cby.orange.utils.storage.OrangePreference;
 import com.cby.orange.utils.timer.BaseTimerTask;
@@ -75,7 +75,7 @@ public class LauncherDelegate extends OrangeDelegate implements ITimerListener{
     //判断是否显示滑动启动页
     private void checkIsShowScroll(){
         if (!OrangePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
-            startWithPop(new LauncherScrollDelegate());
+            getSupportDelegate().startWithPop(new LauncherScrollDelegate());
         }else {
             //检查用户是否登陆了app
             AccountManager.checkAccount(new IUserchecker() {

@@ -45,7 +45,7 @@ public class SignUpDelegate extends OrangeDelegate {
 
     @OnClick(R2.id.tv_link_sign_in)
     void OnclickSignIn() {
-        start(new SignInDelegate());
+        getSupportDelegate().start(new SignInDelegate());
     }
 
     @Override

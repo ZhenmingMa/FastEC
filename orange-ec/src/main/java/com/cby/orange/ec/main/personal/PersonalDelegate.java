@@ -1,4 +1,4 @@
-package com.cby.orange.ec.main.my;
+package com.cby.orange.ec.main.personal;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,10 +11,10 @@ import com.cby.orange.ec.R;
  * Created by baiyanfang on 2017/12/21.
  */
 
-public class MyDelegate extends BottomItemDelegate {
+public class PersonalDelegate extends BottomItemDelegate {
     @Override
     public Object setLayout() {
-        return R.layout.delegate_user;
+        return R.layout.delegate_personal;
     }
 
     @Override

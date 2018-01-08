@@ -74,7 +74,7 @@ public class SignInDelegate extends OrangeDelegate {
 
     @OnClick(R2.id.tv_link_sign_up)
     void onClickSignUp(){
-        start(new SignUpDelegate(),SINGLETASK);
+        getSupportDelegate().start(new SignUpDelegate(),SINGLETASK);
     }
 
     @OnClick(R2.id.icon_sign_in_wechat)

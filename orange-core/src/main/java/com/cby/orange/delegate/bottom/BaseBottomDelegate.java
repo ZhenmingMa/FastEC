@@ -22,6 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import butterknife.BindView;
+import me.yokeyword.fragmentation.ISupportFragment;
 import me.yokeyword.fragmentation.SupportFragment;
 
 /**
@@ -32,11 +33,12 @@ public abstract class BaseBottomDelegate extends OrangeDelegate implements View.
 
     private final ArrayList<BottomTabBean> TAB_BAENS = new ArrayList<>();
     private final ArrayList<BottomItemDelegate> ITEM_DELEGATES = new ArrayList<>();
-    private final LinkedHashMap<BottomTabBean,BottomItemDelegate> ITEMS = new LinkedHashMap<>();
+    private final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
     private int mCurrentDelegate = 0;
     private int mIndexDelegate = 0;
     private int mClickedColor = Color.RED;
-    public abstract LinkedHashMap<BottomTabBean,BottomItemDelegate> setItems(ItemBuilder builder);
+
+    public abstract LinkedHashMap<BottomTabBean, BottomItemDelegate> setItems(ItemBuilder builder);
 
     @BindView(R2.id.bottom_bar)
     LinearLayoutCompat mBottomBar = null;
@@ -55,14 +57,14 @@ public abstract class BaseBottomDelegate extends OrangeDelegate implements View.
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mIndexDelegate = setIndexDelegate();
-        if (setClickedColor() != 0){
+        if (setClickedColor() != 0) {
             mClickedColor = setClickedColor();
         }
 
         final ItemBuilder builder = ItemBuilder.builder();
-        final LinkedHashMap<BottomTabBean,BottomItemDelegate> items = setItems(builder);
+        final LinkedHashMap<BottomTabBean, BottomItemDelegate> items = setItems(builder);
         ITEMS.putAll(items);
-        for (Map.Entry<BottomTabBean,BottomItemDelegate> item :ITEMS.entrySet()){
+        for (Map.Entry<BottomTabBean, BottomItemDelegate> item : ITEMS.entrySet()) {
             final BottomTabBean key = item.getKey();
             final BottomItemDelegate value = item.getValue();
             TAB_BAENS.add(key);
@@ -74,7 +76,7 @@ public abstract class BaseBottomDelegate extends OrangeDelegate implements View.
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         final int size = ITEMS.size();
         for (int i = 0; i < size; i++) {
-            LayoutInflater.from(getContext()).inflate(R.layout.button_item_icon_text_layout,mBottomBar);
+            LayoutInflater.from(getContext()).inflate(R.layout.button_item_icon_text_layout, mBottomBar);
             final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
             //设置每一个item的点击事件
             item.setTag(i);
@@ -85,16 +87,16 @@ public abstract class BaseBottomDelegate extends OrangeDelegate implements View.
             //初始化数据
             itemIcon.setText(bean.getIcon());
             itemTitle.setText(bean.getTitle());
-            if (i == mIndexDelegate){
+            if (i == mIndexDelegate) {
                 itemIcon.setTextColor(mClickedColor);
                 itemTitle.setTextColor(mClickedColor);
             }
         }
-        final SupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new SupportFragment[size]);
-        loadMultipleRootFragment(R.id.bottom_bar_delegate_container,mIndexDelegate,delegateArray);
+        final ISupportFragment[] delegateArray = ITEM_DELEGATES.toArray(new ISupportFragment[size]);
+        getSupportDelegate().loadMultipleRootFragment(R.id.bottom_bar_delegate_container, mIndexDelegate, delegateArray);
     }
 
-    private void resetColor(){
+    private void resetColor() {
         int count = mBottomBar.getChildCount();
         for (int i = 0; i < count; i++) {
             final RelativeLayout item = (RelativeLayout) mBottomBar.getChildAt(i);
@@ -115,7 +117,7 @@ public abstract class BaseBottomDelegate extends OrangeDelegate implements View.
         final AppCompatTextView itemTitle = (AppCompatTextView) item.getChildAt(1);
         itemTitle.setTextColor(mClickedColor);
 
-        showHideFragment(ITEM_DELEGATES.get(tag),ITEM_DELEGATES.get(mCurrentDelegate));
+        getSupportDelegate().showHideFragment(ITEM_DELEGATES.get(tag), ITEM_DELEGATES.get(mCurrentDelegate));
         //一定要注意先后顺序
         mCurrentDelegate = tag;
     }

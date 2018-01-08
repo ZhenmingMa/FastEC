@@ -3,7 +3,6 @@ package com.cby.orange.ec.main.index;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.cby.orange.net.callback.IFailure;
 import com.cby.orange.ui.recycler.DataConverter;
 import com.cby.orange.ui.recycler.ItemType;
 import com.cby.orange.ui.recycler.MultipleItemEntity;

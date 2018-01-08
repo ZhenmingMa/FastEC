@@ -1,7 +1,6 @@
 package com.cby.orange.delegate.web.client;
 
 import android.graphics.Bitmap;
-import android.icu.text.UFormat;
 import android.os.Handler;
 import android.webkit.CookieManager;
 import android.webkit.WebView;
@@ -15,8 +14,6 @@ import com.cby.orange.delegate.web.route.Router;
 import com.cby.orange.ui.loader.OrangeLoader;
 import com.cby.orange.utils.log.OrangeLogger;
 import com.cby.orange.utils.storage.OrangePreference;
-
-import java.util.Map;
 
 
 /**

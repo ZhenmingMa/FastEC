@@ -1,6 +1,5 @@
 package com.cby.orange.ec.main.index;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
@@ -15,16 +14,11 @@ import com.cby.orange.delegate.bottom.BottomItemDelegate;
 import com.cby.orange.ec.R;
 import com.cby.orange.ec.R2;
 import com.cby.orange.ec.main.EcBottomDelegate;
-import com.cby.orange.net.RestClient;
-import com.cby.orange.net.callback.ISuccess;
 import com.cby.orange.ui.recycler.BaseDecoration;
 import com.cby.orange.ui.recycler.MultipleItemEntity;
 import com.cby.orange.ui.recycler.MultipleteFields;
 import com.cby.orange.ui.refresh.RefreshHandler;
-import com.cby.orange.utils.log.OrangeLogger;
 import com.joanzapata.iconify.widget.IconTextView;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 

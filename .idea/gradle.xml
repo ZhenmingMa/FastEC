@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/orange-compiler" />
             <option value="$PROJECT_DIR$/orange-core" />
             <option value="$PROJECT_DIR$/orange-ec" />
+            <option value="$PROJECT_DIR$/orange-ui" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

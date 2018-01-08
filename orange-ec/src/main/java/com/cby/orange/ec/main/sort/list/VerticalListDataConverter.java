@@ -3,13 +3,11 @@ package com.cby.orange.ec.main.sort.list;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.cby.orange.app.Orange;
 import com.cby.orange.ui.recycler.DataConverter;
 import com.cby.orange.ui.recycler.ItemType;
 import com.cby.orange.ui.recycler.MultipleItemEntity;
 import com.cby.orange.ui.recycler.MultipleItemEntityBuilder;
 import com.cby.orange.ui.recycler.MultipleteFields;
-import com.cby.orange.utils.log.OrangeLogger;
 
 
 import java.util.ArrayList;
