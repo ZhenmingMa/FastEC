@@ -30,7 +30,7 @@ import butterknife.OnClick;
  * Created by baiyanfang on 2017/12/12.
  */
 
-public class LauncherDelegate extends OrangeDelegate implements ITimerListener{
+public class LauncherDelegate extends OrangeDelegate implements ITimerListener {
 
     private Timer mTimer = null;
     private int mCount = 3;
@@ -41,17 +41,17 @@ public class LauncherDelegate extends OrangeDelegate implements ITimerListener{
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView() {
-        if (mTimer !=null){
+        if (mTimer != null) {
             mTimer.cancel();
             mTimer = null;
             checkIsShowScroll();
         }
     }
 
-    private void initTimer(){
+    private void initTimer() {
         mTimer = new Timer();
         final BaseTimerTask task = new BaseTimerTask(this);
-        mTimer.schedule(task,0,1000);
+        mTimer.schedule(task, 0, 1000);
     }
 
     @Override
@@ -73,28 +73,26 @@ public class LauncherDelegate extends OrangeDelegate implements ITimerListener{
     }
 
     //判断是否显示滑动启动页
-    private void checkIsShowScroll(){
-        if (!OrangePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())){
+    private void checkIsShowScroll() {
+        if (!OrangePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
             getSupportDelegate().startWithPop(new LauncherScrollDelegate());
-        }else {
+        } else {
             //检查用户是否登陆了app
             AccountManager.checkAccount(new IUserchecker() {
                 @Override
                 public void onSign() {
-                    if (mILauncherListener != null){
+                    if (mILauncherListener != null) {
                         mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
                     }
                 }
 
                 @Override
                 public void onNotSign() {
-                    if (mILauncherListener != null){
+                    if (mILauncherListener != null) {
                         mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
                     }
                 }
             });
-
-
         }
     }
 
@@ -103,11 +101,11 @@ public class LauncherDelegate extends OrangeDelegate implements ITimerListener{
         getProxyActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (mTvTimer != null){
-                    mTvTimer.setText(MessageFormat.format("跳过\n{0}s",mCount));
+                if (mTvTimer != null) {
+                    mTvTimer.setText(MessageFormat.format("跳过\n{0}s", mCount));
                     mCount--;
-                    if (mCount < 0){
-                        if (mTimer !=null){
+                    if (mCount < 0) {
+                        if (mTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
                             checkIsShowScroll();

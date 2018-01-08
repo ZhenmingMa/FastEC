@@ -6,6 +6,7 @@ package com.cby.orange.ui.recycler;
 
 public enum MultipleteFields {
     ITEM_TYPE,
+    TITLE,
     TEXT,
     IMAGE_URL,
     BANNERS,
