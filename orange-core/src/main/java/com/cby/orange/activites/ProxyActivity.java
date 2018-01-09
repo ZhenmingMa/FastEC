@@ -21,6 +21,7 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
 
     private final SupportActivityDelegate DELEGATE = new SupportActivityDelegate(this);
 
+
     public abstract OrangeDelegate setRootDelegate();
 
     @Override
@@ -81,4 +82,6 @@ public abstract class ProxyActivity extends AppCompatActivity implements ISuppor
     public void onBackPressed() {
         DELEGATE.onBackPressed();
     }
+
+
 }

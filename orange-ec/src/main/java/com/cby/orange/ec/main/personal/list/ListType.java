@@ -5,5 +5,6 @@ package com.cby.orange.ec.main.personal.list;
  */
 
 public class ListType {
-    public static final int ITEMNORMAL = 20;
+    public static final int ITEM_NORMAL = 20;
+    public static final int ITEM_AVATAR = 21;
 }

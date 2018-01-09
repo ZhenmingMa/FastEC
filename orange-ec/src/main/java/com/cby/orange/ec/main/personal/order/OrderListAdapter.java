@@ -48,7 +48,7 @@ public class OrderListAdapter extends MultipleRecyclerAdapter {
 
                 title.setText(timeVal);
                 price.setText("价格：" + String.valueOf((priceVal)));
-                time.setText(timeVal);
+                time.setText("时间：" + timeVal);
                 Glide.with(mContext)
                         .load(imageUrl)
                         .apply(OPTIONS)

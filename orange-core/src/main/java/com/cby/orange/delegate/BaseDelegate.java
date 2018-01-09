@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cby.orange.activites.ProxyActivity;
+import com.cby.orange.utils.log.OrangeLogger;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -87,6 +88,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     public void onResume() {
         super.onResume();
         DELEGATE.onResume();
+        OrangeLogger.e("onResume",this.getClass().getName());
     }
 
     @Override
@@ -119,7 +121,7 @@ public abstract class BaseDelegate extends Fragment implements ISupportFragment 
     public void onDestroy() {
         DELEGATE.onDestroy();
         super.onDestroy();
-
+        OrangeLogger.e("onDestroy",this.getClass().getName());
     }
 
 

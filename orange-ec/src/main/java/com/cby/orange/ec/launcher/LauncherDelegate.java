@@ -75,13 +75,14 @@ public class LauncherDelegate extends OrangeDelegate implements ITimerListener {
     //判断是否显示滑动启动页
     private void checkIsShowScroll() {
         if (!OrangePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
-            getSupportDelegate().startWithPop(new LauncherScrollDelegate());
+           getSupportDelegate().startWithPop(new LauncherScrollDelegate());
         } else {
             //检查用户是否登陆了app
             AccountManager.checkAccount(new IUserchecker() {
                 @Override
                 public void onSign() {
                     if (mILauncherListener != null) {
+                        getSupportDelegate().pop();
                         mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
                     }
                 }
@@ -89,6 +90,7 @@ public class LauncherDelegate extends OrangeDelegate implements ITimerListener {
                 @Override
                 public void onNotSign() {
                     if (mILauncherListener != null) {
+                        getSupportDelegate().pop();
                         mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
                     }
                 }

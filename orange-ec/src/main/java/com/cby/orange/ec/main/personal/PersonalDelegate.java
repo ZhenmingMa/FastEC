@@ -13,6 +13,7 @@ import com.cby.orange.ec.main.personal.list.ListAdapter;
 import com.cby.orange.ec.main.personal.list.ListBean;
 import com.cby.orange.ec.main.personal.list.ListType;
 import com.cby.orange.ec.main.personal.order.OrderListDelegate;
+import com.cby.orange.ec.main.personal.profile.UserProfileDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +43,17 @@ public class PersonalDelegate extends BottomItemDelegate {
         StartOrderListByType(type);
     }
 
+    @OnClick(R2.id.img_user_avatar)
+    void OnCLickAvatar(){
+        getParentDelegate().getSupportDelegate().start(new UserProfileDelegate());
+    }
+
+    @OnClick(R2.id.ll_pay)
+    void OnClickPay() {
+        type = "pay";
+        StartOrderListByType(type);
+    }
+
     private void StartOrderListByType(String type) {
         final OrderListDelegate delegate = OrderListDelegate.newInstance(type);
         getParentDelegate().getSupportDelegate().start(delegate);
@@ -55,12 +67,12 @@ public class PersonalDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         final ListBean address = new ListBean.Builder()
-                .setItemYype(ListType.ITEMNORMAL)
+                .setItemYype(ListType.ITEM_NORMAL)
                 .setId(1)
                 .setText("收货地址")
                 .build();
         final ListBean system = new ListBean.Builder()
-                .setItemYype(ListType.ITEMNORMAL)
+                .setItemYype(ListType.ITEM_NORMAL)
                 .setId(2)
                 .setText("系统设置")
                 .build();

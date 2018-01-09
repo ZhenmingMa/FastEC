@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/app_background">
 
-    <LinearLayout
+    <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -24,7 +24,7 @@
                 android:layout_marginTop="30dp"
                 android:src="@drawable/avatar" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -45,7 +45,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
@@ -54,7 +54,7 @@
                 android:textColor="@android:color/black"
                 tools:ignore="HardcodedText,RtlHardcoded" />
 
-            <TextView
+            <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_all_order"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -78,14 +78,14 @@
 
         </RelativeLayout>
 
-        <LinearLayout
+        <android.support.v7.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:background="@android:color/white"
             android:baselineAligned="true"
             android:orientation="horizontal">
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/ll_pay"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -101,7 +101,7 @@
                     android:text="{fa-credit-card}"
                     android:textSize="20sp" />
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -110,9 +110,9 @@
                     android:text="待付款"
                     android:textSize="10sp" />
 
-            </LinearLayout>
+            </android.support.v7.widget.LinearLayoutCompat>
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/ll_receive"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -128,7 +128,7 @@
                     android:text="{fa-truck}"
                     android:textSize="20sp" />
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -138,9 +138,9 @@
                     android:text="待收货"
                     android:textSize="10sp" />
 
-            </LinearLayout>
+            </android.support.v7.widget.LinearLayoutCompat>
 
-            <LinearLayout
+            <android.support.v7.widget.LinearLayoutCompat
                 android:id="@+id/ll_evaluate"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -156,7 +156,7 @@
                     android:text="{fa-clone}"
                     android:textSize="20sp" />
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -165,9 +165,9 @@
                     android:text="待评价"
                     android:textSize="10sp" />
 
-            </LinearLayout>
+            </android.support.v7.widget.LinearLayoutCompat>
 
-            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            <android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/ll_after_market"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -183,7 +183,7 @@
                     android:text="{fa-comments-o}"
                     android:textSize="20sp" />
 
-                <TextView
+                <android.support.v7.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
@@ -192,15 +192,15 @@
                     android:text="售后"
                     android:textSize="10sp" />
 
-            </LinearLayout>
+            </android.support.v7.widget.LinearLayoutCompat>
 
-        </LinearLayout>
+        </android.support.v7.widget.LinearLayoutCompat>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_personal_setting"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="20dp" />
-    </LinearLayout>
+    </android.support.v7.widget.LinearLayoutCompat>
 
 </ScrollView>

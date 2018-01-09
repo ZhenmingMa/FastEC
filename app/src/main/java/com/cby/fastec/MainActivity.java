@@ -55,11 +55,12 @@ public class MainActivity extends ProxyActivity implements ISignListener,ILaunch
         switch (tag){
             case SIGNED:
                 Toast.makeText(this, "启动结束，用户登陆了", Toast.LENGTH_SHORT).show();
-                getSupportDelegate().startWithPop(new EcBottomDelegate());
+                getSupportDelegate().loadRootFragment(R.id.delegate_container,new EcBottomDelegate());
+
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，用户没登陆", Toast.LENGTH_SHORT).show();
-                getSupportDelegate().startWithPop(new SignInDelegate());
+                getSupportDelegate().loadRootFragment(R.id.delegate_container,new SignInDelegate());
                 break;
             default:
                 break;
