@@ -9,11 +9,9 @@ import android.view.View;
 import com.cby.orange.delegate.OrangeDelegate;
 import com.cby.orange.ec.R;
 import com.cby.orange.ec.R2;
-import com.cby.orange.ec.main.personal.PersonalDelegate;
 import com.cby.orange.net.RestClient;
 import com.cby.orange.net.callback.ISuccess;
 import com.cby.orange.ui.recycler.MultipleItemEntity;
-import com.cby.orange.utils.log.OrangeLogger;
 
 import java.util.List;
 
@@ -72,6 +70,7 @@ public class OrderListDelegate extends OrangeDelegate {
                         final List<MultipleItemEntity> data = new OrderListDataConverter().setJsonData(response).convert();
                         OrderListAdapter adapter = new OrderListAdapter(data);
                         mRecyclerView.setAdapter(adapter);
+                        mRecyclerView.addOnItemTouchListener(new OrderListClickListener(OrderListDelegate.this));
                     }
                 })
                 .build()
