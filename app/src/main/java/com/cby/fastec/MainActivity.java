@@ -16,6 +16,7 @@ import com.cby.orange.ec.sign.ISignListener;
 import com.cby.orange.ec.sign.SignInDelegate;
 
 import cn.jpush.android.api.JPushInterface;
+import me.yokeyword.fragmentation.ISupportFragment;
 import qiu.niorgai.StatusBarCompat;
 
 public class MainActivity extends ProxyActivity implements ISignListener,ILauncherListener {
@@ -39,13 +40,15 @@ public class MainActivity extends ProxyActivity implements ISignListener,ILaunch
     @Override
     public void onSignInSuccess() {
         Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
-        getSupportDelegate().startWithPop(new EcBottomDelegate());
+        getSupportDelegate().pop();
+        getSupportDelegate().loadRootFragment(R.id.delegate_container,new EcBottomDelegate());
     }
 
     @Override
     public void onSignUpSuccess() {
         Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
-        getSupportDelegate().startWithPop(new EcBottomDelegate());
+        getSupportDelegate().pop();
+        getSupportDelegate().loadRootFragment(R.id.delegate_container,new EcBottomDelegate());
     }
 
     @Override
@@ -53,8 +56,8 @@ public class MainActivity extends ProxyActivity implements ISignListener,ILaunch
         switch (tag){
             case SIGNED:
                 Toast.makeText(this, "启动结束，用户登陆了", Toast.LENGTH_SHORT).show();
+                getSupportDelegate().pop();
                 getSupportDelegate().loadRootFragment(R.id.delegate_container,new EcBottomDelegate());
-
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，用户没登陆", Toast.LENGTH_SHORT).show();

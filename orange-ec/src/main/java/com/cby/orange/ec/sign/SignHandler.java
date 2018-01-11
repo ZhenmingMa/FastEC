@@ -3,6 +3,7 @@ package com.cby.orange.ec.sign;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.cby.orange.app.AccountManager;
+import com.cby.orange.delegate.OrangeDelegate;
 import com.cby.orange.ec.datebase.DataBaseManager;
 import com.cby.orange.ec.datebase.UserProfile;
 

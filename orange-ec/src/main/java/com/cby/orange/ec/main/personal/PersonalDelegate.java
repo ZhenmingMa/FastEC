@@ -15,6 +15,7 @@ import com.cby.orange.ec.main.personal.list.ListBean;
 import com.cby.orange.ec.main.personal.list.ListType;
 import com.cby.orange.ec.main.personal.order.OrderListDelegate;
 import com.cby.orange.ec.main.personal.profile.UserProfileDelegate;
+import com.cby.orange.ec.main.personal.setting.SettingDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +77,7 @@ public class PersonalDelegate extends BottomItemDelegate{
         final ListBean system = new ListBean.Builder()
                 .setItemYype(ListType.ITEM_NORMAL)
                 .setId(2)
+                .setDelegate(new SettingDelegate())
                 .setText("系统设置")
                 .build();
 

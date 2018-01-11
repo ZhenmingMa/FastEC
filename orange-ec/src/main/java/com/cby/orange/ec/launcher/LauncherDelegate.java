@@ -82,7 +82,6 @@ public class LauncherDelegate extends OrangeDelegate implements ITimerListener {
                 @Override
                 public void onSign() {
                     if (mILauncherListener != null) {
-                        getSupportDelegate().pop();
                         mILauncherListener.onLauncherFinish(OnLauncherFinishTag.SIGNED);
                     }
                 }
@@ -90,7 +89,6 @@ public class LauncherDelegate extends OrangeDelegate implements ITimerListener {
                 @Override
                 public void onNotSign() {
                     if (mILauncherListener != null) {
-                        getSupportDelegate().pop();
                         mILauncherListener.onLauncherFinish(OnLauncherFinishTag.NOT_SIGNED);
                     }
                 }

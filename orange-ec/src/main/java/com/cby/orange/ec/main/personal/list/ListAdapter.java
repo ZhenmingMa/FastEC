@@ -1,5 +1,6 @@
 package com.cby.orange.ec.main.personal.list;
 
+import android.support.v7.widget.SwitchCompat;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +26,7 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
         super(data);
         addItemType(ListType.ITEM_NORMAL, R.layout.arrow_item_layout);
         addItemType(ListType.ITEM_AVATAR, R.layout.arrow_item_avatar);
+        addItemType(ListType.ITEM_SWITCH, R.layout.arrow_item_switch);
     }
 
     @Override
@@ -39,6 +41,12 @@ public class ListAdapter extends BaseMultiItemQuickAdapter<ListBean, BaseViewHol
                         .load(listBean.getmImageUrl())
                         .apply(OPTIONS)
                         .into((ImageView) baseViewHolder.getView(R.id.img_arrow_avatar));
+                break;
+            case ListType.ITEM_SWITCH:
+                baseViewHolder.setText(R.id.tv_arrow_switch_text,listBean.getmText());
+                SwitchCompat switchCompat = baseViewHolder.getView(R.id.list_item_switch);
+                switchCompat.setChecked(true);
+                switchCompat.setOnCheckedChangeListener(listBean.getmCheckedChangeListener());
                 break;
             default:
                 break;
