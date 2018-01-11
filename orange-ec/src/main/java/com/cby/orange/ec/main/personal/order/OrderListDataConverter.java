@@ -19,7 +19,6 @@ public class OrderListDataConverter extends DataConverter {
     @Override
     public ArrayList<MultipleItemEntity> convert() {
         final JSONArray array = JSON.parseObject(getmJsonData()).getJSONArray("data");
-        ArrayList<MultipleItemEntity> list = new ArrayList<>();
         final int size = array.size();
         for (int i = 0; i < size; i++) {
             JSONObject data = array.getJSONObject(i);
@@ -36,8 +35,8 @@ public class OrderListDataConverter extends DataConverter {
                     .setField(OrderItemFIelds.PRICE, price)
                     .setField(OrderItemFIelds.TIME, time)
                     .build();
-            list.add(entity);
+            ENTITYS.add(entity);
         }
-        return list;
+        return ENTITYS;
     }
 }

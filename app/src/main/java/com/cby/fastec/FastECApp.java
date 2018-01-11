@@ -11,6 +11,8 @@ import com.cby.orange.net.rx.AddCookieInterceptor;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by Ma on 2017/11/22.
  */
@@ -33,7 +35,12 @@ public class FastECApp extends Application {
                 .withInterceptor(new AddCookieInterceptor())
                 .withWebHost("https://www.baidu.com/")
                 .configure();
+
         DataBaseManager.getInstance().init(this);
+
+        //开启极光推送
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
         initStetho();
     }
 

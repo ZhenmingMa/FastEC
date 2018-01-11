@@ -9,6 +9,7 @@ import android.view.View;
 import com.cby.orange.delegate.bottom.BottomItemDelegate;
 import com.cby.orange.ec.R;
 import com.cby.orange.ec.R2;
+import com.cby.orange.ec.main.personal.address.AddressDeleagate;
 import com.cby.orange.ec.main.personal.list.ListAdapter;
 import com.cby.orange.ec.main.personal.list.ListBean;
 import com.cby.orange.ec.main.personal.list.ListType;
@@ -25,7 +26,7 @@ import butterknife.OnClick;
  * Created by baiyanfang on 2017/12/21.
  */
 
-public class PersonalDelegate extends BottomItemDelegate {
+public class PersonalDelegate extends BottomItemDelegate{
 
     @BindView(R2.id.rv_personal_setting)
     RecyclerView mRecyclerView = null;
@@ -70,6 +71,7 @@ public class PersonalDelegate extends BottomItemDelegate {
                 .setItemYype(ListType.ITEM_NORMAL)
                 .setId(1)
                 .setText("收货地址")
+                .setDelegate(new AddressDeleagate())
                 .build();
         final ListBean system = new ListBean.Builder()
                 .setItemYype(ListType.ITEM_NORMAL)
@@ -86,5 +88,6 @@ public class PersonalDelegate extends BottomItemDelegate {
         mRecyclerView.setLayoutManager(manager);
         ListAdapter adapter = new ListAdapter(listBeans);
         mRecyclerView.setAdapter(adapter);
+        mRecyclerView.addOnItemTouchListener(new PersonalClickListener(this));
     }
 }

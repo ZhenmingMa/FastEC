@@ -27,6 +27,7 @@ public final class Orange {
 
 
     public static Configurator init(Context context){
+
         Configurator.getInstance().getOrangeConfigs().put(ConfigKeys.APPLICATION_CONTEXT,context.getApplicationContext());
         return Configurator.getInstance();
     }

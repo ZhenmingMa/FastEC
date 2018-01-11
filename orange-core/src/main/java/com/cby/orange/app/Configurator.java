@@ -1,9 +1,11 @@
 package com.cby.orange.app;
 
 import android.app.Activity;
+import android.app.Application;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import com.blankj.utilcode.util.Utils;
 import com.cby.orange.delegate.web.event.Event;
 import com.cby.orange.delegate.web.event.EventManager;
 import com.joanzapata.iconify.IconFontDescriptor;
@@ -47,9 +49,11 @@ public class Configurator {
     }
 
     public final void configure() {
+
         initIcons();
         initLogger();
         ORANGE_CONFIGS.put(ConfigKeys.CONFIG_READY, true);
+        Utils.init((Application) Orange.getApplicationContext());
     }
 
     public final Configurator withApiHost(String host) {

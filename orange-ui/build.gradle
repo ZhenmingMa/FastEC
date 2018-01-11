@@ -52,4 +52,8 @@ dependencies {
     compile project(':orange-core')
     //圆形imageviiew
     compile 'de.hdodenhof:circleimageview:2.2.0'
+
+
+
+
 }

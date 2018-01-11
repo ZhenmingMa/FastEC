@@ -15,6 +15,7 @@ import com.cby.orange.ec.main.EcBottomDelegate;
 import com.cby.orange.ec.sign.ISignListener;
 import com.cby.orange.ec.sign.SignInDelegate;
 
+import cn.jpush.android.api.JPushInterface;
 import qiu.niorgai.StatusBarCompat;
 
 public class MainActivity extends ProxyActivity implements ISignListener,ILauncherListener {
@@ -33,9 +34,6 @@ public class MainActivity extends ProxyActivity implements ISignListener,ILaunch
     @Override
     public OrangeDelegate setRootDelegate() {
         return new LauncherDelegate();
-//        return new MainDelegate();
-//        return new SignInDelegate();
-
     }
 
     @Override
@@ -60,10 +58,22 @@ public class MainActivity extends ProxyActivity implements ISignListener,ILaunch
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，用户没登陆", Toast.LENGTH_SHORT).show();
-                getSupportDelegate().loadRootFragment(R.id.delegate_container,new SignInDelegate());
+                getSupportDelegate().startWithPop(new SignInDelegate());
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
     }
 }
