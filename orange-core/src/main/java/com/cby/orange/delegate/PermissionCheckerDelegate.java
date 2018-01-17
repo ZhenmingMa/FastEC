@@ -1,7 +1,6 @@
 package com.cby.orange.delegate;
 
 
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
@@ -26,7 +25,6 @@ import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 
 /**
- *
  * Created by Ma on 2017/11/28.
  */
 
@@ -35,14 +33,21 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
 
 
     @NeedsPermission(Manifest.permission.CAMERA)
-    //不是直接调用方法、
-    void startCamera(){
+        //不是直接调用方法、
+    void startCamera() {
         OrangeCamera.start(this);
     }
+
+    @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+    void getWrite_external_storage() {
+
+    }
+
 
     //这个是真正调用的方法
     public void startCameraWithCheck() {
         PermissionCheckerDelegatePermissionsDispatcher.startCameraWithPermissionCheck(this);
+        PermissionCheckerDelegatePermissionsDispatcher.getWrite_external_storageWithPermissionCheck(this);
     }
 
     @OnPermissionDenied(Manifest.permission.CAMERA)
@@ -104,8 +109,7 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
                 case RequestCodes.CROP_PHOTO:
                     final Uri cropUri = UCrop.getOutput(data);
                     //拿到剪裁后的数据进行处理
-                    @SuppressWarnings("unchecked")
-                    final IGlobalCallback<Uri> callback = CallbackManager
+                    @SuppressWarnings("unchecked") final IGlobalCallback<Uri> callback = CallbackManager
                             .getInstance()
                             .getCallback(CallbackType.ON_CROP);
                     if (callback != null) {

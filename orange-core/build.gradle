@@ -78,6 +78,8 @@ dependencies {
     compile 'com.blankj:utilcode:1.10.0'
     //图片剪裁库
     compile 'com.github.yalantis:ucrop:2.2.1-native'
+    //二维码扫码
+    compile 'me.dm7.barcodescanner:zbar:1.9.8'
 
 
 }
