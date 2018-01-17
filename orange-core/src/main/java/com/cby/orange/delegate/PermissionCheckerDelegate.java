@@ -2,10 +2,10 @@ package com.cby.orange.delegate;
 
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.cby.orange.ui.camera.CameraImageBean;
 import com.cby.orange.ui.camera.OrangeCamera;
 import com.cby.orange.ui.camera.RequestCodes;
+import com.cby.orange.ui.scanner.ScannerDelegate;
 import com.cby.orange.utils.callback.CallbackManager;
 import com.cby.orange.utils.callback.CallbackType;
 import com.cby.orange.utils.callback.IGlobalCallback;
@@ -38,17 +39,31 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
         OrangeCamera.start(this);
     }
 
+    //这个是真正调用的方法
+    public void startCameraWithCheck() {
+        PermissionCheckerDelegatePermissionsDispatcher.startCameraWithPermissionCheck(this);
+        PermissionCheckerDelegatePermissionsDispatcher.getWrite_external_storageWithPermissionCheck(this);
+    }
+
+    //扫描二维码不直接调用
+    @NeedsPermission(Manifest.permission.CAMERA)
+    void startScan(BaseDelegate delegate){
+        delegate.getSupportDelegate().startForResult(new ScannerDelegate(),RequestCodes.SCAN);
+
+    }
+
+    public void startScanWithCheck(BaseDelegate delegate){
+        PermissionCheckerDelegatePermissionsDispatcher.startScanWithPermissionCheck(this,delegate);
+    }
+
+
     @NeedsPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
     void getWrite_external_storage() {
 
     }
 
 
-    //这个是真正调用的方法
-    public void startCameraWithCheck() {
-        PermissionCheckerDelegatePermissionsDispatcher.startCameraWithPermissionCheck(this);
-        PermissionCheckerDelegatePermissionsDispatcher.getWrite_external_storageWithPermissionCheck(this);
-    }
+
 
     @OnPermissionDenied(Manifest.permission.CAMERA)
     void onCameraDenied() {
@@ -124,4 +139,20 @@ public abstract class PermissionCheckerDelegate extends BaseDelegate {
             }
         }
     }
+
+    @Override
+    public void onFragmentResult(int requestCode, int resultCode, Bundle data) {
+        super.onFragmentResult(requestCode, resultCode, data);
+        if (requestCode == RequestCodes.SCAN){
+            if (data!=null){
+                final String qrCode = data.getString("SCAN_RESULT");
+                final IGlobalCallback<String> callback = CallbackManager
+                        .getInstance().getCallback(CallbackType.ON_SCAN);
+                if (callback != null){
+                    callback.executeCallback(qrCode);
+                }
+            }
+        }
+    }
+
 }

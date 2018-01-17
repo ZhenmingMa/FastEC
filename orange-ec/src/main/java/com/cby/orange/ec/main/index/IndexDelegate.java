@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.cby.orange.delegate.bottom.BottomItemDelegate;
 import com.cby.orange.ec.R;
@@ -18,9 +19,13 @@ import com.cby.orange.ui.recycler.BaseDecoration;
 import com.cby.orange.ui.recycler.MultipleItemEntity;
 import com.cby.orange.ui.recycler.MultipleteFields;
 import com.cby.orange.ui.refresh.RefreshHandler;
+import com.cby.orange.utils.callback.CallbackManager;
+import com.cby.orange.utils.callback.CallbackType;
+import com.cby.orange.utils.callback.IGlobalCallback;
 import com.joanzapata.iconify.widget.IconTextView;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by baiyanfang on 2017/12/21.
@@ -47,6 +52,12 @@ public class IndexDelegate extends BottomItemDelegate {
     AppCompatEditText mSearchView = null;
 
     private RefreshHandler mRefreshHandler = null;
+
+
+    @OnClick(R2.id.icon_index_scan)
+    void onClickScanQrCode(){
+        startScanWithCheck(this.getParentDelegate());
+    }
 
     private void initRefreshLayout() {
         mRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_red_light);
@@ -86,6 +97,11 @@ public class IndexDelegate extends BottomItemDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         mRefreshHandler = RefreshHandler.create(mRefreshLayout,mRecyclerView,new IndexDataConvert());
-
+        CallbackManager.getInstance().addCallback(CallbackType.ON_SCAN, new IGlobalCallback<String>() {
+            @Override
+            public void executeCallback(@Nullable String args) {
+                Toast.makeText(getContext(), args, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
