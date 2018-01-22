@@ -10,7 +10,7 @@ $(function () {
             }
         };
 
-        latte.event(JSON.stringify(json));
+        orange.event(JSON.stringify(json));
 
     });
 
@@ -20,7 +20,7 @@ $(function () {
                 action: "comment"
             };
 
-            latte.event(JSON.stringify(json));
+            orange.event(JSON.stringify(json));
 
         });
 });

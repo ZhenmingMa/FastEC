@@ -3,6 +3,7 @@ package com.cby.fastec;
 import android.app.Application;
 import android.support.annotation.Nullable;
 
+import com.cby.fastec.event.ShareEvent;
 import com.cby.fastec.event.TestEvent;
 import com.cby.orange.app.Orange;
 import com.cby.orange.ec.datebase.DataBaseManager;
@@ -14,6 +15,7 @@ import com.cby.orange.utils.callback.CallbackType;
 import com.cby.orange.utils.callback.IGlobalCallback;
 import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.mob.MobSDK;
 
 import cn.jpush.android.api.JPushInterface;
 
@@ -35,6 +37,7 @@ public class FastECApp extends Application {
                 .withWeChatAppSecret("12312213123")
                 .withJavascriptInterface("orange")
                 .withWebEvent("test", new TestEvent())
+                .withWebEvent("share", new ShareEvent())
                 //添加cookie同步拦截器
                 .withInterceptor(new AddCookieInterceptor())
                 .withWebHost("https://www.baidu.com/")
@@ -67,13 +70,16 @@ public class FastECApp extends Application {
                     }
                 });
 
-        initStetho();
+        //初始化mobSDK
+        MobSDK.init(this);
+
+//        initStetho();
     }
 
-    private void initStetho() {
-        Stetho.initialize(Stetho.newInitializerBuilder(this)
-                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
-                .build());
-    }
+//    private void initStetho() {
+//        Stetho.initialize(Stetho.newInitializerBuilder(this)
+//                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
+//                .enableWebKitInspector(Stetho.defaultInspectorModulesProvider(this))
+//                .build());
+//    }
 }

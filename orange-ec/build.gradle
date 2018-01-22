@@ -22,6 +22,8 @@ android {
     }
     //noinspection GradleDependency
     buildToolsVersion '25.0.2'
+
+
 }
 
 dependencies {
