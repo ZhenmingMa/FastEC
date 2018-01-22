@@ -7,6 +7,7 @@ import com.cby.orange.net.callback.IFailure;
 import com.cby.orange.net.callback.IRequest;
 import com.cby.orange.net.callback.ISuccess;
 import com.cby.orange.ui.loader.LoaderStyle;
+import com.cby.orange.utils.log.OrangeLogger;
 
 import java.io.File;
 import java.util.WeakHashMap;
@@ -38,6 +39,7 @@ public class RestClientBuilder {
     }
 
     public final RestClientBuilder url(String url){
+        OrangeLogger.e("url",url);
         this.mUrl = url;
         return this;
     }

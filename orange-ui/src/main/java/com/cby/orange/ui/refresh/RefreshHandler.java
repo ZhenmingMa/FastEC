@@ -22,7 +22,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 
 public class RefreshHandler implements
         SwipeRefreshLayout.OnRefreshListener,
-        BaseQuickAdapter.RequestLoadMoreListener{
+        BaseQuickAdapter.RequestLoadMoreListener {
 
     private final SwipeRefreshLayout REFRESH_LAYOUT;
     private final PagingBean BEAN;
@@ -43,22 +43,49 @@ public class RefreshHandler implements
 
     public static RefreshHandler create(SwipeRefreshLayout refresh_layout,
                                         RecyclerView recyclerview,
-                                        DataConverter converter){
-        return new RefreshHandler(refresh_layout,new PagingBean(),recyclerview,converter);
+                                        DataConverter converter) {
+        return new RefreshHandler(refresh_layout, new PagingBean(), recyclerview, converter);
     }
 
-    private void refresh(){
+    private void refresh() {
         REFRESH_LAYOUT.setRefreshing(true);
-        Orange.getHandler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //网络请求
-                REFRESH_LAYOUT.setRefreshing(false);
-            }
-        },2000);
+        RestClient.builder()
+                .url("index.php")
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+
+                        final JSONObject jsonObject = JSON.parseObject(response);
+                        BEAN.setTotal(jsonObject.getInteger("total"))
+                                .setPageSize(jsonObject.getInteger("page_size"))
+                                .setPageIndex(0)
+                                .setCurrentCount(0);
+
+                        //设置adapter
+                        mAdapter.getData().clear();
+                        mAdapter.setNewData(CONVERTER.setJsonData(response).convert());
+                        BEAN.addIndex();
+                        REFRESH_LAYOUT.setRefreshing(false);
+
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure() {
+
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+
+                    }
+                })
+                .build()
+                .get();
     }
 
-    public void firstPage(String url){
+    public void firstPage(String url) {
         BEAN.setDelayed(1000);
         RestClient.builder()
                 .url(url)
@@ -67,12 +94,13 @@ public class RefreshHandler implements
                     public void onSuccess(String response) {
                         final JSONObject jsonObject = JSON.parseObject(response);
                         BEAN.setTotal(jsonObject.getInteger("total"))
-                        .setPageSize(jsonObject.getInteger("page_size"));
-                //设置adapter
+                                .setPageSize(jsonObject.getInteger("page_size"));
+                        //设置adapter
                         mAdapter = MultipleRecyclerAdapter.create(CONVERTER.setJsonData(response));
-                        mAdapter.setOnLoadMoreListener(RefreshHandler.this,RECYCLERVIEW);
+                        mAdapter.setOnLoadMoreListener(RefreshHandler.this, RECYCLERVIEW);
                         RECYCLERVIEW.setAdapter(mAdapter);
                         BEAN.addIndex();
+
                     }
                 })
                 .failure(new IFailure() {
@@ -92,6 +120,37 @@ public class RefreshHandler implements
 
     }
 
+    private void paging(final String url) {
+        final int pageSize = BEAN.getPageSize();
+        final int currentCount = BEAN.getCurrentCount();
+        final int total = BEAN.getTotal();
+        final int index = BEAN.getPageIndex();
+
+        if (mAdapter.getData().size() < pageSize || currentCount >= pageSize) {
+            mAdapter.loadMoreEnd();
+        } else {
+            Orange.getHandler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    RestClient.builder()
+                            .url(url + index)
+                            .success(new ISuccess() {
+                                @Override
+                                public void onSuccess(String response) {
+                                    mAdapter.addData(CONVERTER.setJsonData(response).convert());
+                                    //累加数量
+                                    BEAN.setCurrentCount(mAdapter.getData().size());
+                                    mAdapter.loadMoreComplete();
+                                    BEAN.addIndex();
+                                }
+                            })
+                            .build()
+                            .get();
+                }
+            }, 1000);
+        }
+    }
+
     @Override
     public void onRefresh() {
         refresh();
@@ -99,6 +158,6 @@ public class RefreshHandler implements
 
     @Override
     public void onLoadMoreRequested() {
-
+        paging("refresh.php?index=");
     }
 }
